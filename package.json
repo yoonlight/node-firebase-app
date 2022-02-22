@@ -1,0 +1,18 @@
+{
+  "name": "firebase",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "serve": "nodemon -r dotenv/config src",
+    "start": "node -r dotenv/config src"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "firebase": "^9.6.7"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
