@@ -1,5 +1,6 @@
 import express from "express";
 import { createUserInfo, login, register } from "./firebase.js";
+import { getUserInfo, updateUserInfo } from "./userInfo.js";
 
 const app = express();
 const PORT = 3000;
@@ -10,9 +11,27 @@ app.get("/", async (req, res) => {
 	res.send("Hello World!");
 });
 
+app.get("/user/info/:userId", async (req, res) => {
+	try {
+		const user = await getUserInfo();
+		res.json(user.data());
+	} catch (error) {
+		res.send(error);
+	}
+});
+
 app.post("/user/info", async (req, res) => {
 	try {
 		await createUserInfo();
+		res.send("Success");
+	} catch (error) {
+		res.send(error);
+	}
+});
+
+app.put("/user/info/:userId", async (req, res) => {
+	try {
+		await updateUserInfo();
 		res.send("Success");
 	} catch (error) {
 		res.send(error);
