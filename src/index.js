@@ -5,7 +5,7 @@ import { getUserInfo, updateUserInfo, createUserInfo } from "./userInfo.js";
 const app = express();
 const PORT = 3000;
 
-app.use(express.json())
+app.use(express.json());
 
 app.get("/", async (req, res) => {
 	res.send("Hello World!");
@@ -48,15 +48,15 @@ app.post("/user/register", async (req, res) => {
 	}
 });
 
-app.post("/user/login", async (req,res)=> {
+app.post("/user/login", async (req, res) => {
 	try {
 		const { email, password } = req.body;
 		const user = await login(email, password);
-		res.json(user)
+		res.json(user);
 	} catch (error) {
-		res.send(error.message)
+		res.send(error.message);
 	}
-})
+});
 
 app.listen(PORT, () => {
 	console.log(`Listening to http://localhost:${PORT}`);
