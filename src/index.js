@@ -1,6 +1,6 @@
 import express from "express";
-import { createUserInfo, login, register } from "./firebase.js";
-import { getUserInfo, updateUserInfo } from "./userInfo.js";
+import { login, register } from "./firebase.js";
+import { getUserInfo, updateUserInfo, createUserInfo } from "./userInfo.js";
 
 const app = express();
 const PORT = 3000;
