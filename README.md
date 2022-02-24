@@ -29,8 +29,10 @@ yarn serve
 ## use case
 
 - [x] create user info
-- [ ] update user info
-- [x] create item info
+- [x] update user info
+- [x] get user info
+- [ ] create item info
 - [ ] update item info
+- [ ] get item info
 - [x] sign up
 - [x] login
