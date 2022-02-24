@@ -1,5 +1,25 @@
 # Node.js Firebase Application
 
+## Command
+
+- install dependency
+
+```shell
+yarn
+```
+
+- start server
+
+```shell
+yarn start
+```
+
+- start dev server
+
+```shell
+yarn serve
+```
+
 ## Package
 
 - express: http web server
