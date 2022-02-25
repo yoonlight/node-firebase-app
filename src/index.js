@@ -17,7 +17,7 @@ app.get("/user/info/:userId", async (req, res) => {
 		const user = await getUserInfo(userId);
 		res.json(user.data());
 	} catch (error) {
-		res.send(error);
+		res.status(500).send(error.message);
 	}
 });
 
@@ -27,7 +27,7 @@ app.post("/user/info", async (req, res) => {
 		await createUserInfo(userId);
 		res.send("Success");
 	} catch (error) {
-		res.send(error);
+		res.status(500).send(error.message);
 	}
 });
 
@@ -37,7 +37,7 @@ app.put("/user/info/:userId", async (req, res) => {
 		await updateUserInfo(userId);
 		res.send("Success");
 	} catch (error) {
-		res.send(error);
+		res.status(500).send(error.message);
 	}
 });
 
@@ -47,7 +47,7 @@ app.post("/user/register", async (req, res) => {
 		const user = await register(email, password);
 		res.json(user);
 	} catch (error) {
-		res.send(error.message);
+		res.status(500).status(500).send(error.message);
 	}
 });
 
@@ -59,7 +59,7 @@ app.post("/user/login", async (req, res) => {
 			throw new Error("이메일 인증을 완료하세요");
 		res.json(user);
 	} catch (error) {
-		res.send(error.message);
+		res.status(500).send(error.message);
 	}
 });
 
@@ -68,7 +68,7 @@ app.get("/user/logout", async (req, res) => {
 		await logout();
 		res.send("success to logout");
 	} catch (error) {
-		res.send(error.message);
+		res.status(500).send(error.message);
 	}
 });
 
