@@ -1,47 +1,42 @@
 import {
 	getFirestore,
-	setDoc,
+	updateDoc,
 	getDoc,
 	doc,
-	collection,
-	addDoc,
+	setDoc,
 } from "firebase/firestore";
 
 const db = getFirestore();
 
-export const getUserInfo = async () => {
+const data = {
+	age: 26,
+	height: 171,
+	name: "USA",
+	sex: "USA",
+	weight: 60,
+};
+
+export const getUserInfo = async (userId = "Hello") => {
 	try {
-		const user = await getDoc(doc(db, "users", "L8GXvahbmW7tk4vYsOdj"));
+		const user = await getDoc(doc(db, "users", userId));
+		if (!user.data()) throw new Error("there is no user");
 		return user;
 	} catch (error) {
-		console.log(error);
 		throw new Error(error);
 	}
 };
 
-export const updateUserInfo = async () => {
+export const updateUserInfo = async (userId = "L8GXvahbmW7tk4vYsOdj") => {
 	try {
-		await setDoc(doc(db, "users", "L8GXvahbmW7tk4vYsOdj"), {
-			age: 26,
-			height: 171,
-			name: "USA",
-			sex: "USA",
-			weight: 60,
-		});
+		await updateDoc(doc(db, "users", userId), data);
 	} catch (error) {
 		throw new Error(error);
 	}
 };
 
-export const createUserInfo = async () => {
+export const createUserInfo = async (userId = "Hello") => {
 	try {
-		await addDoc(collection(db, "users"), {
-			age: 25,
-			height: 170,
-			name: "USA",
-			sex: "USA",
-			weight: 60,
-		});
+		await setDoc(doc(db, "users", userId), data);
 	} catch (error) {
 		throw new Error(error);
 	}

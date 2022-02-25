@@ -13,7 +13,8 @@ app.get("/", async (req, res) => {
 
 app.get("/user/info/:userId", async (req, res) => {
 	try {
-		const user = await getUserInfo();
+		const { userId } = req.params;
+		const user = await getUserInfo(userId);
 		res.json(user.data());
 	} catch (error) {
 		res.send(error);
@@ -22,7 +23,8 @@ app.get("/user/info/:userId", async (req, res) => {
 
 app.post("/user/info", async (req, res) => {
 	try {
-		await createUserInfo();
+		const { userId } = req.body;
+		await createUserInfo(userId);
 		res.send("Success");
 	} catch (error) {
 		res.send(error);
@@ -31,7 +33,8 @@ app.post("/user/info", async (req, res) => {
 
 app.put("/user/info/:userId", async (req, res) => {
 	try {
-		await updateUserInfo();
+		const { userId } = req.params;
+		await updateUserInfo(userId);
 		res.send("Success");
 	} catch (error) {
 		res.send(error);
