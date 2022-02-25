@@ -52,6 +52,8 @@ app.post("/user/login", async (req, res) => {
 	try {
 		const { email, password } = req.body;
 		const user = await login(email, password);
+		if (!user.user.emailVerified)
+			throw new Error("이메일 인증을 완료하세요");
 		res.json(user);
 	} catch (error) {
 		res.send(error.message);

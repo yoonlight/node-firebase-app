@@ -35,4 +35,6 @@ yarn serve
 - [ ] update item info
 - [ ] get item info
 - [x] sign up
+  - [x] verify email
+    - [ ] issue: hide link's api key
 - [x] login
