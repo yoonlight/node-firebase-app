@@ -23,7 +23,10 @@ yarn serve
 ## Package
 
 - express: http web server
+  - cookie-parser: parse http cookie
+  - csurf: handle CSRF attack
 - firebase: database, auth
+- firebase-admin: admin SDK to manage user
 - dotenv: manage env config
 
 ## Structure
@@ -36,12 +39,21 @@ yarn serve
 
 ## use case
 
+### user information
+
 - [x] create user info
 - [x] update user info
 - [x] get user info
+  - [ ] return cache data if don't update info
+
+### item information
+
 - [ ] create item info
 - [ ] update item info
 - [ ] get item info
+
+### Authorization
+
 - [x] sign up
   - [x] verify email
     - [ ] issue: hide link's api key
@@ -49,7 +61,9 @@ yarn serve
 - [x] logout
 - [ ] check islogin when using api
   - [x] add login checker to middleware
-  - [ ] manage cookie
+  - [x] manage cookie
+  - [ ] add csrf
+  - [ ] refresh expiration token
 
 ## Reference
 
