@@ -9,6 +9,8 @@
     "start": "node -r dotenv/config src"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
     "express": "^4.17.3",
     "firebase": "^9.6.7",
     "firebase-admin": "^10.0.2"
