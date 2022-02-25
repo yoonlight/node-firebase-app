@@ -1,4 +1,5 @@
 import express from "express";
+import { checkIsLogin } from "./admin.js";
 import { login, logout, register } from "./firebase.js";
 import { getUserInfo, updateUserInfo, createUserInfo } from "./userInfo.js";
 
@@ -11,7 +12,7 @@ app.get("/", async (req, res) => {
 	res.send("Hello World!");
 });
 
-app.get("/user/info/:userId", async (req, res) => {
+app.get("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		const user = await getUserInfo(userId);
@@ -21,7 +22,7 @@ app.get("/user/info/:userId", async (req, res) => {
 	}
 });
 
-app.post("/user/info", async (req, res) => {
+app.post("/user/info", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.body;
 		await createUserInfo(userId);
@@ -31,7 +32,7 @@ app.post("/user/info", async (req, res) => {
 	}
 });
 
-app.put("/user/info/:userId", async (req, res) => {
+app.put("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		await updateUserInfo(userId);

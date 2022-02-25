@@ -39,3 +39,14 @@ yarn serve
     - [ ] issue: hide link's api key
 - [x] login
 - [x] logout
+- [ ] check islogin when using api
+  - [x] add login checker to middleware
+  - [ ] manage cookie
+
+## Reference
+
+### How to manage JWT in Firebase
+
+- <https://firebase.google.com/docs/auth/admin/verify-id-tokens?authuser=0>
+- <https://firebase.google.com/docs/auth/admin/manage-sessions?authuser=0>
+- <https://firebase.google.com/docs/auth/admin/manage-cookies?authuser=0#sign_in>
