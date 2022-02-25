@@ -26,6 +26,14 @@ yarn serve
 - firebase: database, auth
 - dotenv: manage env config
 
+## Structure
+
+- admin.js: initialize firebase admin app
+- config.js: manage environment variables
+- firebase.js: initialize firebase app
+- index.js: start express web app
+- userInfo.js: handle user's information data
+
 ## use case
 
 - [x] create user info
