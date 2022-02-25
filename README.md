@@ -38,3 +38,4 @@ yarn serve
   - [x] verify email
     - [ ] issue: hide link's api key
 - [x] login
+- [x] logout

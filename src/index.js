@@ -1,5 +1,5 @@
 import express from "express";
-import { login, register } from "./firebase.js";
+import { login, logout, register } from "./firebase.js";
 import { getUserInfo, updateUserInfo, createUserInfo } from "./userInfo.js";
 
 const app = express();
@@ -55,6 +55,15 @@ app.post("/user/login", async (req, res) => {
 		if (!user.user.emailVerified)
 			throw new Error("이메일 인증을 완료하세요");
 		res.json(user);
+	} catch (error) {
+		res.send(error.message);
+	}
+});
+
+app.get("/user/logout", async (req, res) => {
+	try {
+		await logout();
+		res.send("success to logout");
 	} catch (error) {
 		res.send(error.message);
 	}
