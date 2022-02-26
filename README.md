@@ -25,6 +25,7 @@ yarn serve
 - express: http web server
   - cookie-parser: parse http cookie
   - csurf: handle CSRF attack
+  - cors: handle CORS
 - firebase: database, auth
 - firebase-admin: admin SDK to manage user
 - dotenv: manage env config
@@ -62,7 +63,7 @@ yarn serve
 - [ ] check islogin when using api
   - [x] add login checker to middleware
   - [x] manage cookie
-  - [ ] add csrf
+  - [x] add csrf
   - [ ] refresh expiration token
 
 ## Reference
@@ -72,3 +73,30 @@ yarn serve
 - <https://firebase.google.com/docs/auth/admin/verify-id-tokens?authuser=0>
 - <https://firebase.google.com/docs/auth/admin/manage-sessions?authuser=0>
 - <https://firebase.google.com/docs/auth/admin/manage-cookies?authuser=0#sign_in>
+
+### Apply CSURF to Backend & Frontend to block CSRF
+
+- <https://www.youtube.com/watch?v=N5U7KtxvVto>
+- Backend
+  - <https://github.com/jimmythecode/CSURF-Tutorial-Back-End>
+- Frontend
+  - <https://github.com/jimmythecode/CSURF-Tutorial-Front-End>
+
+## Todo
+
+### Web
+
+- [x] Loign Web page
+- [x] Session Login
+- [x] Session Logout
+- [x] Get user information
+
+## Study
+
+- cookie
+- samesite
+- cors
+- csrf
+- credential
+- set cookie
+- cross-site
