@@ -21,7 +21,8 @@ router.post("/sessionLogin", async (req, res) => {
 		const options = {
 			maxAge: expiresIn,
 			httpOnly: true,
-			secure: process.env.NODE_ENV === 'production', // HTTPS
+			sameSite: "None",
+			secure: true,
 		};
 		res.cookie("session", sessionCookie, options);
 		res.end(JSON.stringify({ status: "success" }));
@@ -32,6 +33,6 @@ router.post("/sessionLogin", async (req, res) => {
 });
 
 router.post("/sessionLogout", (req, res) => {
-	res.clearCookie("session");
+	res.clearCookie("session", { sameSite: "none", secure: true });
 	res.end("session logout");
 });
