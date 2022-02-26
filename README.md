@@ -82,6 +82,10 @@ yarn serve
 - Frontend
   - <https://github.com/jimmythecode/CSURF-Tutorial-Front-End>
 
+### Firebase Login Form Error
+
+- <https://stackoverflow.com/questions/38860900/firebase-project-results-in-auth-network-request-failed-error-on-login>
+
 ## Todo
 
 ### Web
@@ -90,6 +94,7 @@ yarn serve
 - [x] Session Login
 - [x] Session Logout
 - [x] Get user information
+- [x] Login Form
 
 ## Study
 
