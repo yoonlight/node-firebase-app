@@ -29,6 +29,10 @@ const loginButton = document.querySelector("button.login");
 const logoutButton = document.querySelector("button.logout");
 const getUserButton = document.querySelector("button.get_user");
 
-loginButton.addEventListener("click", login);
+loginButton.addEventListener("click", async () => {
+	const email = document.querySelector("#email").value
+	const pass = document.querySelector("#pass").value
+	await login(email, pass)
+});
 logoutButton.addEventListener("click", logout);
 getUserButton.addEventListener("click", getUser);

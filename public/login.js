@@ -5,15 +5,14 @@ import {
 
 const auth = getAuth();
 
-export const login = async () => {
+export const login = async (email, pass) => {
 	try {
-		const user = await signInWithEmailAndPassword(auth, "email", "pass");
+		const user = await signInWithEmailAndPassword(auth, email, pass);
 		const idToken = await user.user.getIdToken();
 		const csrfToken = document
 			.querySelector('meta[name="csrf-token"]')
 			.getAttribute("content");
-		console.log(csrfToken);
-		const res = await fetch("http://localhost:3000/sessionLogin", {
+		await fetch("http://localhost:3000/sessionLogin", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

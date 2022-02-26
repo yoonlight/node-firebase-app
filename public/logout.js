@@ -11,7 +11,7 @@ export const logout = async () => {
 			.querySelector('meta[name="csrf-token"]')
 			.getAttribute("content");
 
-		const res = await fetch("http://localhost:3000/sessionLogout", {
+		await fetch("http://localhost:3000/sessionLogout", {
 			method: "POST",
 			headers: {
 				Accept: "application/json",
@@ -20,8 +20,7 @@ export const logout = async () => {
 			},
 			credentials: "include",
 		});
-		const result = await signOut(auth);
-		console.log(result);
+		await signOut(auth);
 	} catch (error) {
 		console.error(error);
 	}
