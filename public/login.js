@@ -2,12 +2,12 @@ import {
 	getAuth,
 	signInWithEmailAndPassword,
 	browserSessionPersistence,
-	browserLocalPersistence
+	browserLocalPersistence,
 } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 const auth = getAuth();
 
-await auth.setPersistence(browserLocalPersistence)
+await auth.setPersistence(browserLocalPersistence);
 
 export const login = async (email, pass) => {
 	try {
@@ -27,10 +27,10 @@ export const login = async (email, pass) => {
 			credentials: "include",
 		});
 	} catch (error) {
-		throw new Error(error)
+		throw new Error(error);
 	}
 };
 
 export const isLogin = () => {
-	return auth.currentUser
-}
+	return auth.currentUser;
+};
