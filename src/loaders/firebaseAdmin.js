@@ -6,7 +6,7 @@ admin.initializeApp({
 	credential: applicationDefault(),
 });
 
-export const cookie = async (req, res, next) => {
+export const verifyToken = async (req, res, next) => {
 	try {
 		const sessionCookie = req.cookies.session || "";
 		// Verify the session cookie. In this case an additional check is added to detect

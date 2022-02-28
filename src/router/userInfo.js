@@ -1,6 +1,6 @@
 import express from "express";
 import { getUserInfo, updateUserInfo, createUserInfo } from "../services/userInfo.js";
-import { cookie } from "../loaders/firebaseAdmin.js";
+import { verifyToken } from "../loaders/firebaseAdmin.js";
 import { cache } from "../utils/cache.js";
 
 export const userInfoRouter = express.Router();
@@ -43,7 +43,7 @@ export const userInfoRouter = express.Router();
  *         schema:
  *           $ref: '#/definitions/User'
  */
-userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
+userInfoRouter.get("/user/info/:userId", verifyToken, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		const url = `${req.url}/${userId}`;
@@ -83,7 +83,7 @@ userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
  *       200:
  *         description: Success to create new user's information
  */
-userInfoRouter.post("/user/info/:userId", cookie, async (req, res) => {
+userInfoRouter.post("/user/info/:userId", verifyToken, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		await createUserInfo(userId, req.body);
@@ -115,7 +115,7 @@ userInfoRouter.post("/user/info/:userId", cookie, async (req, res) => {
  *       200:
  *         description: Success to update existing user's information
  */
-userInfoRouter.put("/user/info/:userId", cookie, async (req, res) => {
+userInfoRouter.put("/user/info/:userId", verifyToken, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		const url = `${req.url}/${userId}`;
