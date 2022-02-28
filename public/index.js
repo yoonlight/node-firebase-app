@@ -53,7 +53,6 @@ loginButton.addEventListener("click", async () => {
 });
 
 logoutButton.addEventListener("click", async (event) => {
-	event.preventDefault();
 	await logout();
 	logoutButton.style.display = "none";
 	loginButton.style.display = "block";
@@ -63,13 +62,17 @@ logoutButton.addEventListener("click", async (event) => {
 getUserButton.addEventListener("click", getUser);
 
 editUserButton.addEventListener("click", async () => {
-	const userForm = document.forms.namedItem("userForm");
 	const data = {
-		sex: userForm["sex"].value,
-		name: userForm["name"].value,
-		weight: userForm["weight"].value,
-		height: userForm["height"].value,
-		age: userForm["age"].value,
+		sex: getFormData("sex"),
+		name: getFormData("name"),
+		weight: getFormData("weight"),
+		height: getFormData("height"),
+		age: getFormData("age"),
 	};
 	await editUser(data);
 });
+
+const getFormData = (name) => {
+	const userForm = document.forms.namedItem("userForm");
+	return userForm.elements.namedItem(name).value;
+};
