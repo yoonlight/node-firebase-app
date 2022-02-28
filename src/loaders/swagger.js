@@ -23,3 +23,14 @@ const options = {
 };
 
 export const swaggerSpec = swaggerJSDoc(options);
+
+export const loadSwagger = (app) => {
+	app.get("/swagger.json", (req, res) => {
+		res.setHeader("Content-Type", "application/json");
+		res.send(swaggerSpec);
+	});
+
+	app.get("/docs", (req, res) => {
+		res.sendFile(resolve(__dirname, "../../docs/redoc.html"));
+	});
+}
