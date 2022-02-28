@@ -6,7 +6,7 @@ export const userInfoRouter = express.Router();
 
 /**
  * @swagger
- * parameters:
+ * definitions:
  *   User:
  *     type: object
  *     properties:
@@ -69,8 +69,6 @@ userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
  *     responses:
  *       200:
  *         description: Success to create new user's information
- *         schema:
- *           $ref: '#/definitions/User'
  */
 userInfoRouter.post("/user/info", checkIsLogin, async (req, res) => {
 	try {
@@ -103,8 +101,6 @@ userInfoRouter.post("/user/info", checkIsLogin, async (req, res) => {
  *     responses:
  *       200:
  *         description: Success to update existing user's information
- *         schema:
- *           $ref: '#/definitions/User'
  */
 userInfoRouter.put("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
