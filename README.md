@@ -45,7 +45,7 @@ yarn serve
 - [x] create user info
 - [x] update user info
 - [x] get user info
-  - [ ] return cache data if don't update info
+  - [x] return cache data if don't update info: use LRU cache
 
 ### item information
 
@@ -55,16 +55,26 @@ yarn serve
 
 ### Authorization
 
+#### Server
+
 - [x] sign up
   - [x] verify email
     - [ ] issue: hide link's api key
-- [x] login
-- [x] logout
-- [ ] check islogin when using api
+- [ ] check logged when using api
   - [x] add login checker to middleware
   - [x] manage cookie
   - [x] add csrf
   - [ ] refresh expiration token
+- [x] Session
+  - [x] Login
+    - [ ] After cookie expires, actions?
+    - [ ] Its check speed is too late... (about 1sec)
+  - [x] Logout
+
+#### Client
+
+- [x] login
+- [x] logout
 
 ## Reference
 
@@ -90,7 +100,7 @@ yarn serve
 
 ### Web
 
-- [x] Loign Web page
+- [x] Login Web page
 - [x] Session Login
 - [x] Session Logout
 - [x] Get user information
@@ -99,9 +109,9 @@ yarn serve
 ## Study
 
 - cookie
-- samesite
-- cors
-- csrf
+- sameSite
+- CORS
+- CSRF
 - credential
-- set cookie
+- set-cookie
 - cross-site
