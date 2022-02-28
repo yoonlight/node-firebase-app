@@ -1,7 +1,7 @@
 import "./firebase.js";
 import { isLogin, login } from "./login.js";
 import { logout } from "./logout.js";
-import { getUser } from "./userInfo.js";
+import { editUser, getUser } from "./userInfo.js";
 
 const init = async () => {
 	try {
@@ -28,6 +28,7 @@ init().then();
 const loginButton = document.querySelector("button.login");
 const logoutButton = document.querySelector("button.logout");
 const getUserButton = document.querySelector("button.get_user");
+const editUserButton = document.querySelector("button.edit_user");
 
 if (isLogin()) {
 	loginButton.style.display = "none";
@@ -52,6 +53,7 @@ loginButton.addEventListener("click", async () => {
 });
 
 logoutButton.addEventListener("click", async (event) => {
+	event.preventDefault();
 	await logout();
 	logoutButton.style.display = "none";
 	loginButton.style.display = "block";
@@ -59,3 +61,15 @@ logoutButton.addEventListener("click", async (event) => {
 });
 
 getUserButton.addEventListener("click", getUser);
+
+editUserButton.addEventListener("click", async () => {
+	const userForm = document.forms.namedItem("userForm");
+	const data = {
+		sex: userForm["sex"].value,
+		name: userForm["name"].value,
+		weight: userForm["weight"].value,
+		height: userForm["height"].value,
+		age: userForm["age"].value,
+	};
+	await editUser(data);
+});
