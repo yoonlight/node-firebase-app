@@ -23,6 +23,10 @@ export const login = async (email, pass) => {
 			credentials: "include",
 		});
 	} catch (error) {
-		console.error(error);
+		throw new Error(error)
 	}
 };
+
+export const isLogin = () => {
+	return auth.currentUser
+}

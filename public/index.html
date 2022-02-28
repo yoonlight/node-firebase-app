@@ -11,15 +11,15 @@
 
 <body>
     <div>
-        <div name="login">
+        <form name="login" action="#" onsubmit="return false">
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" value="example.com"><br>
             <label for="pass">Password:</label><br>
             <input type="password" id="pass" name="pass"><br><br>
-            <button class="login">Login</button>
-        </div>
-        <button class="logout">Logout</button>
         <button class="get_user">user</button>
+            <button class="login" style="display: none;">Login</button>
+            <button class="logout" style="display: none;">Logout</button>
+        </form>
     </div>
 </body>
 
