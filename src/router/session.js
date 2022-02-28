@@ -7,7 +7,7 @@ router.post("/sessionLogin", async (req, res) => {
 	try {
 		// Get the ID token passed and the CSRF token.
 		const idToken = req.body.idToken.toString();
-		
+
 		// Set session expiration to 5 days.
 		// const expiresIn = 60 * 60 * 24 * 5 * 1000;
 		const expiresIn = 60 * 5 * 1000;

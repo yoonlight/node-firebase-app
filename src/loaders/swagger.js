@@ -17,8 +17,8 @@ const swaggerDefinition = {
 const options = {
 	swaggerDefinition,
 	apis: [
-		resolve(__dirname, "index.js"),
-		resolve(__dirname, "router/*.js"),
+		resolve(__dirname, "../index.js"),
+		resolve(__dirname, "../router/*.js"),
 	],
 };
 

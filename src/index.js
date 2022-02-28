@@ -5,9 +5,9 @@ import csrf from "csurf";
 import morgan from "morgan";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { register } from "./firebase.js";
-import { router } from "./session.js";
-import { swaggerSpec } from "./swagger.js";
+import { register } from "./loaders/firebase.js";
+import { router } from "./router/session.js";
+import { swaggerSpec } from "./loaders/swagger.js";
 import { userInfoRouter } from "./router/userInfo.js";
 
 const app = express();

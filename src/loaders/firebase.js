@@ -1,6 +1,6 @@
 // Initialize Cloud Firestore through Firebase
 import { initializeApp } from "firebase/app";
-import { config } from "./config.js";
+import { config } from "../config.js";
 import {
 	getAuth,
 	createUserWithEmailAndPassword,

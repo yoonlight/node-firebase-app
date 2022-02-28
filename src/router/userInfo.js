@@ -1,6 +1,6 @@
 import express from "express";
-import { getUserInfo, updateUserInfo, createUserInfo } from "../userInfo.js";
-import { cookie } from "../admin.js";
+import { getUserInfo, updateUserInfo, createUserInfo } from "../services/userInfo.js";
+import { cookie } from "../loaders/admin.js";
 import { cache } from "../utils/cache.js";
 
 export const userInfoRouter = express.Router();
