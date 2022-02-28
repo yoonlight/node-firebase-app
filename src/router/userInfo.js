@@ -1,6 +1,7 @@
 import express from "express";
 import { getUserInfo, updateUserInfo, createUserInfo } from "../userInfo.js";
 import { checkIsLogin, cookie } from "../admin.js";
+import { cache } from "../utils/cache.js";
 
 export const userInfoRouter = express.Router();
 
@@ -45,8 +46,16 @@ export const userInfoRouter = express.Router();
 userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
 	try {
 		const { userId } = req.params;
-		const user = await getUserInfo(userId);
-		res.json(user.data());
+		const url = `${req.url}/${userId}`;
+		let result;
+		if (!cache.has(url)) {
+			const user = await getUserInfo(userId);
+			result = user.data();
+			cache.set(url, result);
+		} else {
+			result = cache.get(url);
+		}
+		res.json(result);
 	} catch (error) {
 		res.status(500).send(error.message);
 	}
@@ -106,6 +115,8 @@ userInfoRouter.put("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		await updateUserInfo(userId);
+		const url = `${req.url}/${userId}`;
+		if (cache.has(url)) cache.delete(url);
 		res.send("Success");
 	} catch (error) {
 		res.status(500).send(error.message);
