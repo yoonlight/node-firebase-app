@@ -1,6 +1,6 @@
 import express from "express";
 import { getUserInfo, updateUserInfo, createUserInfo } from "../userInfo.js";
-import { checkIsLogin, cookie } from "../admin.js";
+import { cookie } from "../admin.js";
 import { cache } from "../utils/cache.js";
 
 export const userInfoRouter = express.Router();
@@ -83,7 +83,7 @@ userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
  *       200:
  *         description: Success to create new user's information
  */
-userInfoRouter.post("/user/info/:userId", checkIsLogin, async (req, res) => {
+userInfoRouter.post("/user/info/:userId", cookie, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		await createUserInfo(userId, req.body);
@@ -115,7 +115,7 @@ userInfoRouter.post("/user/info/:userId", checkIsLogin, async (req, res) => {
  *       200:
  *         description: Success to update existing user's information
  */
-userInfoRouter.put("/user/info/:userId", checkIsLogin, async (req, res) => {
+userInfoRouter.put("/user/info/:userId", cookie, async (req, res) => {
 	try {
 		const { userId } = req.params;
 		const url = `${req.url}/${userId}`;
