@@ -8,15 +8,7 @@ import {
 
 const db = getFirestore();
 
-const data = {
-	age: 26,
-	height: 171,
-	name: "USA",
-	sex: "USA",
-	weight: 60,
-};
-
-export const getUserInfo = async (userId = "Hello") => {
+export const getUserInfo = async (userId) => {
 	try {
 		const user = await getDoc(doc(db, "users", userId));
 		if (!user.data()) throw new Error("there is no user");
@@ -26,7 +18,7 @@ export const getUserInfo = async (userId = "Hello") => {
 	}
 };
 
-export const updateUserInfo = async (userId = "L8GXvahbmW7tk4vYsOdj") => {
+export const updateUserInfo = async (userId, data) => {
 	try {
 		await updateDoc(doc(db, "users", userId), data);
 	} catch (error) {
@@ -34,7 +26,7 @@ export const updateUserInfo = async (userId = "L8GXvahbmW7tk4vYsOdj") => {
 	}
 };
 
-export const createUserInfo = async (userId = "Hello") => {
+export const createUserInfo = async (userId, data) => {
 	try {
 		await setDoc(doc(db, "users", userId), data);
 	} catch (error) {

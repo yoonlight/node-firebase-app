@@ -63,12 +63,16 @@ userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
 
 /**
  * @swagger
- * /user/info/:
+ * /user/info/:userId:
  *   post:
  *     summary: Create new user's information
  *     tags:
  *       - user information
  *     parameters:
+ *       - in: path
+ *         name: userId
+ *         type: string
+ *         required: true
  *       - name: body
  *         in: body
  *         schema:
@@ -79,10 +83,10 @@ userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
  *       200:
  *         description: Success to create new user's information
  */
-userInfoRouter.post("/user/info", checkIsLogin, async (req, res) => {
+userInfoRouter.post("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
-		const { userId } = req.body;
-		await createUserInfo(userId);
+		const { userId } = req.params;
+		await createUserInfo(userId, req.body);
 		res.send("Success");
 	} catch (error) {
 		res.status(500).send(error.message);
@@ -114,8 +118,8 @@ userInfoRouter.post("/user/info", checkIsLogin, async (req, res) => {
 userInfoRouter.put("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.params;
-		await updateUserInfo(userId);
 		const url = `${req.url}/${userId}`;
+		await updateUserInfo(userId, req.body);
 		if (cache.has(url)) cache.delete(url);
 		res.send("Success");
 	} catch (error) {
