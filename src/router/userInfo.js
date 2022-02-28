@@ -4,6 +4,44 @@ import { checkIsLogin, cookie } from "../admin.js";
 
 export const userInfoRouter = express.Router();
 
+/**
+ * @swagger
+ * parameters:
+ *   User:
+ *     type: object
+ *     properties:
+ *        name:
+ *          type: string
+ *        sex:
+ *          type: string
+ *        age:
+ *          type: integer
+ *        weight:
+ *          type: integer
+ *        height:
+ *          type: integer
+ */
+
+/**
+ * @swagger
+ * /user/info/:userId:
+ *   get:
+ *     summary: Get user's information
+ *     tags:
+ *       - user information
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         type: string
+ *         required: true
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success to read user's information
+ *         schema:
+ *           $ref: '#/definitions/User'
+ */
 userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
 	try {
 		const { userId } = req.params;
@@ -14,6 +52,26 @@ userInfoRouter.get("/user/info/:userId", cookie, async (req, res) => {
 	}
 });
 
+/**
+ * @swagger
+ * /user/info/:
+ *   post:
+ *     summary: Create new user's information
+ *     tags:
+ *       - user information
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         schema:
+ *           $ref: '#/definitions/User'
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success to create new user's information
+ *         schema:
+ *           $ref: '#/definitions/User'
+ */
 userInfoRouter.post("/user/info", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.body;
@@ -24,6 +82,30 @@ userInfoRouter.post("/user/info", checkIsLogin, async (req, res) => {
 	}
 });
 
+/**
+ * @swagger
+ * /user/info/:userId:
+ *   put:
+ *     summary: Update user's information
+ *     tags:
+ *       - user information
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         type: string
+ *         required: true
+ *       - name: body
+ *         in: body
+ *         schema:
+ *           $ref: '#/definitions/User'
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success to update existing user's information
+ *         schema:
+ *           $ref: '#/definitions/User'
+ */
 userInfoRouter.put("/user/info/:userId", checkIsLogin, async (req, res) => {
 	try {
 		const { userId } = req.params;
