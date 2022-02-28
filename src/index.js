@@ -1,5 +1,5 @@
 import express from "express";
-import "./loaders/admin.js"
+import "./loaders/firebaseAdmin.js"
 import "./loaders/firebase.js"
 import { loadMiddleware } from "./loaders/express.js";
 import { loadSwagger } from "./loaders/swagger.js";
