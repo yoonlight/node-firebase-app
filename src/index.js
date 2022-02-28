@@ -3,8 +3,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import csrf from "csurf";
 import { checkIsLogin, cookie } from "./admin.js";
-import { login, logout, register } from "./firebase.js";
 import { getUserInfo, updateUserInfo, createUserInfo } from "./userInfo.js";
+import { register } from "./firebase.js";
 import { router } from "./session.js";
 
 const app = express();
@@ -66,28 +66,6 @@ app.post("/user/register", async (req, res) => {
 		res.json(user);
 	} catch (error) {
 		res.status(500).status(500).send(error.message);
-	}
-});
-
-app.post("/user/login", async (req, res) => {
-	try {
-		const { email, password } = req.body;
-		const user = await login(email, password);
-		if (!user.user.emailVerified)
-			throw new Error("이메일 인증을 완료하세요");
-		const idToken = await user.user.getIdToken();
-		res.json({ idToken, csrfToken: req.cookies._csrf });
-	} catch (error) {
-		res.status(500).send(error.message);
-	}
-});
-
-app.get("/user/logout", async (req, res) => {
-	try {
-		await logout();
-		res.send("success to logout");
-	} catch (error) {
-		res.status(500).send(error.message);
 	}
 });
 
